@@ -23,7 +23,7 @@
 
         for (int i = rowNumber - 2; i > -1; i--)
         {
-
+            Console.WriteLine("testando commit");
         }
     }
 
