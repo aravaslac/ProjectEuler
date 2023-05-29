@@ -23,8 +23,21 @@
 
         for (int i = rowNumber - 2; i > -1; i--)
         {
-            Console.WriteLine("testando commit");
+            for (int j = 0; j < i+1; j++)
+            {
+                if (pyramid[i + 1][j] > pyramid[i + 1][j+1])
+                {
+                    pyramid[i][j] += pyramid[i + 1][j];
+                }
+                else
+                {
+                    pyramid[i][j] += pyramid[i + 1][j + 1];
+                }
+                
+            }
         }
+        Console.WriteLine(pyramid[0][0]);
+        
     }
 
 }
