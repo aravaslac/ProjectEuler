@@ -12,7 +12,7 @@
         while (numbers.Any())
         {
             List<int> row = new List<int>();
-            for (int i = 0; i < rowNumber; i++)
+            for (int i = 0; i < rowNumber + 1; i++)
             {
                 row.Add(numbers[0]);
                 numbers.RemoveAt(0);
@@ -21,35 +21,13 @@
             rowNumber++;
         }
 
-        rowNumber--;
-        int total = pyramid[0][0];
-        int horizontalPosition = 0;
-        for (int i = 1; i < rowNumber-1; i++)
+        for (int i = rowNumber - 2; i > -1; i--)
         {
-            int leftPath = 0;
-            int rightPath = 0;
-            for (int j = i+1; j < rowNumber; j++)
-            {
-                leftPath += pyramid[j][horizontalPosition];
-                rightPath += pyramid[j][horizontalPosition + 1];
-                if (rightPath > leftPath)
-                {
-                    horizontalPosition++;
-                }
-                Console.WriteLine(i);
-                total += pyramid[i][horizontalPosition];
-            }
-            
+
         }
-        int left = pyramid[rowNumber - 1][horizontalPosition];
-        int right = pyramid[rowNumber - 1][horizontalPosition + 1];
-        if (right > left)
-        {
-            horizontalPosition++;
-        }
-        total += pyramid[rowNumber - 1][horizontalPosition];
-        Console.WriteLine(total);
-        Console.WriteLine();
     }
 
 }
+
+
+
