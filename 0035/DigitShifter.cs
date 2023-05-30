@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace _0035
+namespace ex_0035
 {
     public static class DigitShifter
     {
