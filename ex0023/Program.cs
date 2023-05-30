@@ -4,18 +4,13 @@ internal class Program
 {
     private static void Main(string[] args)
     {
-        int[] primes = Sieve.Primes(28123);
+        int[] primes = Sieve.Primes(28124);
         List<int> abundantNumbers = new List<int>
         {
             12
         };
 
-        //foreach (int number in primes)
-        //{
-        //    Console.Write($"{number}, ");
-        //}
-
-        for (int i = 14; i < 28123; i++)
+        for (int i = 14; i < 28124; i++)
         {
             if (primes.Contains(i))
             {
@@ -32,35 +27,21 @@ internal class Program
                 abundantNumbers.Add(i);
             }
         }
-        //foreach (int number in abundantNumbers)
-        //{
-        //    Console.Write($"{number}, ");
-        //}
 
         List<int> sumOfTwoAbundants = new List<int>();
         foreach (int j in abundantNumbers)
         {
-            Console.WriteLine(j);
-            if (j > (int) 28124 / 2)
-            {
-                break;
+            foreach (int k in abundantNumbers)
+            {              
+                    int sum = j + k;
+                    if (sum < 28124 && !sumOfTwoAbundants.Contains(sum))
+                    {
+                        sumOfTwoAbundants.Add(sum);
+                    }
             }
-            for (int k = j; k < 28123 - j; k++)
-            {
-                int sum = j + k;
-                if (!sumOfTwoAbundants.Contains(sum)) 
-                {
-                    sumOfTwoAbundants.Add(sum);
-                    //Console.WriteLine(sum);
-                }
-            }
-            
         }
-
-
-
         int sumOfViable = 0;
-        for (int i = 1; i < 28123; i++)
+        for (int i = 1; i < 28124; i++)
         {
             if (!sumOfTwoAbundants.Contains(i))
             {
