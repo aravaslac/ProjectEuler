@@ -2,6 +2,8 @@
 {
     private static void Main(string[] args)
     {
+        //Solved with pen & parper.
+        //TODO: implement solution here.
         Dictionary<int, List<int>> coinAmounts = new Dictionary<int, List<int>>
         {
             {1, new List<int>()},
