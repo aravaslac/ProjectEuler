@@ -47,5 +47,19 @@ public static class DigitOperations
     {
         return n / 10;
     }
+
+    public static bool CheckIsPandigital(int number)
+    {
+        HashSet<char> digits = new HashSet<char>();
+        foreach (char c in number.ToString())
+        {
+            if (c == '0')
+            {
+                return false;
+            }
+            digits.Add(c);
+        }
+        return digits.Count == GetNumberOfDigits(number);
+    }
 }
 
