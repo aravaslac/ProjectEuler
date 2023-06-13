@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ex0032;
+namespace _library;
 
-public static class DigitCounter
+public static class DigitOperations
 {
-    public static int Digits(this int n)
+    public static int GetNumberOfDigits(this int n)
     {
         if (n >= 0)
         {
@@ -37,4 +37,15 @@ public static class DigitCounter
             return 11;
         }
     }
+
+    public static int RemoveLeftDigit(int n)
+    {
+        return int.Parse($"{n}".Substring(1));
+    }
+
+    public static int RemoveRightDigit(int n)
+    {
+        return n / 10;
+    }
 }
+
