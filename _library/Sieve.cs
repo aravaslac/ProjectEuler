@@ -31,6 +31,10 @@ public static class Sieve
                 numbers[k] = false;
             }
             j++;
+            while (! numbers[j])
+            {
+                j++;
+            }
         }
 
         var primes = new List<int>();

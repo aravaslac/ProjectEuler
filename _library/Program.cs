@@ -4,11 +4,11 @@ internal class Program
 {
     private static void Main(string[] args)
     {
-        List<int> numbers = new List<int>
+        var primes = Sieve.GetPrimes(31427);
+        var factors = PrimeFactorization.Factorize(78431, primes);
+        foreach (var factor in factors)
         {
-            12, 60, 100
-        };
-        Console.WriteLine(Divisors.GetGreatestCommonDivisor(numbers));
-        Console.ReadLine();
+            Console.WriteLine(factor.ToString());
+        }
     }
 }

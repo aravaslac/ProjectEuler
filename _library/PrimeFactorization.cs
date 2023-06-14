@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 namespace _library;
 public static class PrimeFactorization
 {
-    private static readonly int[] _primes = Sieve.GetPrimes(100);
 
     public static List<int> Factorize(int number)
     {
-        if (_primes.Contains(number))
+        var primes = Sieve.GetPrimes(10000);
+        if (primes.Contains(number))
         {
             return new List<int> { number };
         }
@@ -21,10 +21,10 @@ public static class PrimeFactorization
         int i = 0;
         while (number > 1)
         {
-            if (number % _primes[i] == 0)
+            if (number % primes[i] == 0)
             {
-                factors.Add(_primes[i]);
-                number /= _primes[i];
+                factors.Add(primes[i]);
+                number /= primes[i];
             }
             else
             {
@@ -32,5 +32,47 @@ public static class PrimeFactorization
             }
         }
         return factors;
+    }
+
+    public static List<int> Factorize(int number, int[] listOfPrimes)
+    {
+        List<int> factors = new List<int>();
+
+        int outOfBounds = listOfPrimes.Length;
+        int i = 0;
+        while (number > 1)
+        {
+            if (number % listOfPrimes[i] == 0)
+            {
+                factors.Add(listOfPrimes[i]);
+                number /= listOfPrimes[i];
+            }
+            else
+            {
+                i++;
+            }
+            if (i == outOfBounds || listOfPrimes[i] * listOfPrimes[i] > number) //number is prime
+            {
+                factors.Add(number);
+                return factors;
+            }
+        }
+        return factors;
+    }
+
+    public static bool CheckPrimalityViaFactorization(int number, int[] listOfPrimes)
+    {
+        int index = 0;
+        int prime = listOfPrimes[index];
+        while (prime * prime < number)
+        {
+            if ((number % prime) == 0)
+            {
+                return false;
+            }
+            index++;
+            prime = listOfPrimes[index];
+        }
+        return true;
     }
 }

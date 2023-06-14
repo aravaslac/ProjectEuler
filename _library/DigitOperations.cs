@@ -50,16 +50,18 @@ public static class DigitOperations
 
     public static bool CheckIsPandigital(int number)
     {
+        int numberOfDigits = GetNumberOfDigits(number);
+        char numberOfDigitsAsChar = numberOfDigits.ToString()[0];
         HashSet<char> digits = new HashSet<char>();
         foreach (char c in number.ToString())
         {
-            if (c == '0')
+            if (c == '0' || c > numberOfDigitsAsChar)
             {
                 return false;
             }
             digits.Add(c);
         }
-        return digits.Count == GetNumberOfDigits(number);
+        return digits.Count == numberOfDigits;
     }
 }
 
