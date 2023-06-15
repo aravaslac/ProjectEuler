@@ -38,7 +38,7 @@ public static class Sieve
         }
 
         var primes = new List<int>();
-        for (int i = 1; i < limit + 1; i++)
+        for (int i = 2; i < limit + 1; i++)
         {
             if (numbers[i])
             {
@@ -46,5 +46,49 @@ public static class Sieve
             }
         }
         return primes.ToArray();
+    }
+
+    public static int[] GetComposites(int limit)
+    {
+        if (limit < 0)
+        {
+            throw new ArgumentOutOfRangeException();
+        }
+        if (limit < 2)
+        {
+            return new int[0];
+        }
+
+        var numbers = new bool[limit + 1];
+        numbers[0] = false;
+        numbers[1] = false;
+        for (int i = 2; i < limit + 1; i++)
+        {
+            numbers[i] = true;
+        }
+
+        int j = 2;
+        while (j * j < limit + 1)
+        {
+            for (int k = 2 * j; k < limit + 1; k += j)
+            {
+                numbers[k] = false;
+            }
+            j++;
+            while (!numbers[j])
+            {
+                j++;
+            }
+        }
+
+        var composites = new List<int>();
+        for (int i = 4; i < limit + 1; i++)
+        {
+            if (!numbers[i])
+            {
+                composites.Add(i);
+            }
+        }
+        return composites.ToArray();
     }
 }
