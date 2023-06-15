@@ -4,10 +4,10 @@ internal class Program
 {
     private static void Main(string[] args)
     {
-        int[] primes = Sieve.GetPrimes(17);
-        foreach (int i in primes)
+        int[] pentagonalNumbers = FigurateNumbers.GetPentagonalNumbers(1000);
+        foreach (int number in pentagonalNumbers)
         {
-            Console.WriteLine(i);
+            Console.WriteLine(number);
         }
         
     }
