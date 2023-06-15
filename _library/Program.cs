@@ -4,11 +4,11 @@ internal class Program
 {
     private static void Main(string[] args)
     {
-        var primes = Sieve.GetPrimes(31427);
-        var factors = PrimeFactorization.Factorize(78431, primes);
-        foreach (var factor in factors)
+        int[] primes = Sieve.GetPrimes(17);
+        foreach (int i in primes)
         {
-            Console.WriteLine(factor.ToString());
+            Console.WriteLine(i);
         }
+        
     }
 }

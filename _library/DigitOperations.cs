@@ -63,5 +63,23 @@ public static class DigitOperations
         }
         return digits.Count == numberOfDigits;
     }
+
+    public static bool CheckIsTenPandigital(long number)
+    {
+        if (number < 1_000_000_000 || number > 9_999_999_999)
+        {
+            return false;
+        }
+
+        HashSet<char> digits = new HashSet<char>();
+        foreach (char c in number.ToString())
+        {
+            if (! digits.Add(c))
+            {
+                return false;
+            }
+        }
+        return true;
+    }
 }
 
