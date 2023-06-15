@@ -60,6 +60,32 @@ public static class PrimeFactorization
         return factors;
     }
 
+    public static HashSet<int> GetUniqueFactors(int number, int[] listOfPrimes)
+    {
+        HashSet<int> factors = new HashSet<int>();
+
+        int outOfBounds = listOfPrimes.Length;
+        int i = 0;
+        while (number > 1)
+        {
+            if (number % listOfPrimes[i] == 0)
+            {
+                factors.Add(listOfPrimes[i]);
+                number /= listOfPrimes[i];
+            }
+            else
+            {
+                i++;
+            }
+            if (i == outOfBounds || listOfPrimes[i] * listOfPrimes[i] > number) //number is prime
+            {
+                factors.Add(number);
+                return factors;
+            }
+        }
+        return factors;
+    }
+
     public static bool CheckPrimalityViaFactorization(int number, int[] listOfPrimes)
     {
         int index = 0;

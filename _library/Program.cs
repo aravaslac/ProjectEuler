@@ -4,11 +4,11 @@ internal class Program
 {
     private static void Main(string[] args)
     {
-        int[] pentagonalNumbers = FigurateNumbers.GetPentagonalNumbers(1000);
-        foreach (int number in pentagonalNumbers)
+        int[] primes = Sieve.GetPrimes(100);
+        HashSet<int> ints = PrimeFactorization.GetUniqueFactors(646, primes);
+        foreach (int i in ints)
         {
-            Console.WriteLine(number);
+            Console.WriteLine(i);
         }
-        
     }
 }
