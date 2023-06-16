@@ -38,6 +38,19 @@ public static class DigitOperations
         }
     }
 
+    public static string[] GetDigits(int number)
+    {
+        int numberOfDigits = GetNumberOfDigits(number);
+        List<string> digits = new List<string>();
+        for (int i = 0; i < numberOfDigits; i++)
+        {
+            digits.Add($"{number % 10}");
+            number /= 10;
+        }
+        digits.Reverse();
+        return digits.ToArray();
+    }
+
     public static int RemoveLeftDigit(int n)
     {
         return int.Parse($"{n}".Substring(1));
