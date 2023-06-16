@@ -2,6 +2,19 @@
 
 public static class Permutations
 {
+
+    public static string[] GetAnagrams(string word)
+    {
+        List<char> chars = word.ToCharArray().ToList();
+        var combinations = GetPermutations(chars);
+        HashSet<string> anagrams = new HashSet<string>();
+        foreach (var  comb in combinations)
+        {
+            anagrams.Add(new string(comb.ToArray()));
+        }
+        return anagrams.ToArray();
+    }
+
     public static IEnumerable<IEnumerable<T>> GetPermutations<T>(this IEnumerable<T> enumerable)
     {
         var array = enumerable as T[] ?? enumerable.ToArray();
