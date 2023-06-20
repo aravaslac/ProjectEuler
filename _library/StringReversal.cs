@@ -15,4 +15,10 @@ public static class StringReversal
         Array.Reverse(charArray);
         return new string(charArray);
     }
+
+    public static bool CheckIsPalindrome(string s)
+    {
+        string reverse = Reverse(s);
+        return s == reverse;
+    }
 }

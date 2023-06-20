@@ -21,7 +21,6 @@ internal class Program
             {
                 player1Victories++;
             }
-
         }
         Console.WriteLine(player1Victories);
     }
