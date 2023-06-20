@@ -101,4 +101,20 @@ public static class PrimeFactorization
         }
         return true;
     }
+
+    public static bool CheckPrimalityViaFactorization(long number, int[] listOfPrimes)
+    {
+        int index = 0;
+        long prime = listOfPrimes[index];
+        while (prime * prime < number)
+        {
+            if ((number % prime) == 0)
+            {
+                return false;
+            }
+            index++;
+            prime = listOfPrimes[index];
+        }
+        return true;
+    }
 }
