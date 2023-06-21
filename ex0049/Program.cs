@@ -1,4 +1,6 @@
 ﻿//This one isn't pretty.
+using ex0049;
+
 internal class Program
 {
     private static void Main(string[] args)
@@ -21,7 +23,7 @@ internal class Program
             }
 
             HashSet<int> permutations = new HashSet<int>();
-            IEnumerable<IEnumerable<string>> permutationDigits = _library.Permutations.GetPermutations(digits);
+            IEnumerable<IEnumerable<string>> permutationDigits = Permutations.GetPermutations(digits);
             foreach (var digitList in permutationDigits)
             {
                 string permutation = "";

@@ -1,4 +1,4 @@
-﻿namespace _library;
+﻿namespace ex0049;
 
 public static class Permutations
 {
@@ -6,9 +6,9 @@ public static class Permutations
     public static string[] GetAnagrams(string word)
     {
         List<char> chars = word.ToCharArray().ToList();
-        var combinations = GetPermutations(chars);
+        var combinations = chars.GetPermutations();
         HashSet<string> anagrams = new HashSet<string>();
-        foreach (var  comb in combinations)
+        foreach (var comb in combinations)
         {
             anagrams.Add(new string(comb.ToArray()));
         }
