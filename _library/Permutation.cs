@@ -41,5 +41,26 @@ namespace _library
             }
             return permutations;
         }
+
+        //Check if two arrays are permutations of one another
+        public static bool CheckPermutation<T>(T[] firstArray, T[] secondArray)
+        {
+            if (firstArray.Length != secondArray.Length)
+            {
+                return false;
+            }
+            List<T> firstList = firstArray.ToList();
+            List<T> secondList = secondArray.ToList();
+            while (firstList.Count > 0)
+            {
+                T element = firstList[0];
+                if (! secondList.Remove(element))
+                {
+                    return false;
+                }
+                firstList.RemoveAt(0);
+            }
+            return true;
+        }
     }
 }
