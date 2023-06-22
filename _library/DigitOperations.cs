@@ -87,6 +87,16 @@ public static class DigitOperations
         }
     }
 
+    public static int GetNumberOfDigits(BigInteger n)
+    {
+        int numberOfDigits = 0;
+        while (n > 0)
+        {
+            numberOfDigits++;
+            n /= 10;
+        }
+    }
+
     public static string[] GetDigits(int number)
     {
         int numberOfDigits = GetNumberOfDigits(number);
