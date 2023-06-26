@@ -95,6 +95,7 @@ public static class DigitOperations
             numberOfDigits++;
             n /= 10;
         }
+        return numberOfDigits;
     }
 
     public static string[] GetDigits(int number)
