@@ -166,5 +166,38 @@ public static class DigitOperations
         }
         return true;
     }
+
+    //Given a list of digits and a period size n, checks if the list has a period size of n
+    public static bool CheckIsNPeriodic(List<int> digitsInput, int periodLength)
+    {
+        List<int> digits = digitsInput.ToList();
+        int numberOfDigits = digits.Count;
+        if (numberOfDigits == periodLength)
+        {
+            return true;
+        }
+        if (numberOfDigits % periodLength != 0)
+        {
+            return false;
+        }
+        List<int> period = new List<int>();
+        for (int i = 0; i < periodLength; i++)
+        {
+            period.Add(digits[0]);
+            digits.RemoveAt(0);
+        }
+        while (digits.Count > 0)
+        {
+            for (int i = 0; i < periodLength; i++)
+            {
+                if (period[i] != digits[0])
+                {
+                    return false;
+                }
+                digits.RemoveAt(0);
+            }
+        }
+        return true;
+    }
 }
 
