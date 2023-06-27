@@ -12,7 +12,57 @@ namespace _library;
 
 public static class ContinuedFractions
 {
-    //Given a continued fraction, returns the numerators of its sequence of convergents
+    /// <summary>
+    /// Gets the continued fraction representation of a square root
+    /// </summary>
+    /// <param name="n">Not a square number</param>
+    /// <returns>An array containing a0 followed by the period.</returns>
+    public static int[] GetContinuedFraction(int n)
+    {
+        //form: numerator/(sqrt(n) - b)
+        int a0 = (int)Math.Sqrt(n);
+        int b = a0;
+        int numerator = 1;
+        List<int> period = new List<int>();
+        List<int> bValues = new List<int>();
+        List<int> numeratorValues = new List<int>();
+        bool periodBuilder = true;
+        int size = 0;
+        while (periodBuilder)
+        {
+            int aN = (int)(numerator / (Math.Sqrt(n) - b));
+            numerator = _library.RootOperations.GetRationalizedDenominator(n, b) / numerator;
+            b = numerator * aN - b;
+
+            period.Add(aN);
+            bValues.Add(b);
+            numeratorValues.Add(numerator);
+            size = period.Count;
+
+            if (size % 2 == 0
+                    && _library.DigitOperations.CheckIsNPeriodic(period, size / 2)
+                    && _library.DigitOperations.CheckIsNPeriodic(bValues, size / 2)
+                    && _library.DigitOperations.CheckIsNPeriodic(numeratorValues, size / 2)
+               )
+            {
+                periodBuilder = false;
+            }
+        }
+
+        while (period.Count > size / 2)
+        {
+            period.RemoveAt(0);
+        }
+
+        period.Insert(0, a0);
+        return period.ToArray();
+    }
+
+    /// <summary>
+    /// Gets the numerators of the series of convergents of a given continued fraction.
+    /// </summary>
+    /// <param name="continuedFraction">An array containing a continued fraction representation of a number.</param>
+    /// <returns>An array containing the numerators of the convergents.</returns>
     public static BigInteger[] GetConvergentNumerators(int[] continuedFraction)
     {
         int size = continuedFraction.Length;
@@ -42,7 +92,11 @@ public static class ContinuedFractions
         return convergentNumerators.ToArray();
     }
 
-    //Given a continued fraction, returns the denominators of its sequence of convergents
+    /// <summary>
+    /// Gets the denominators of the series of convergents of a given continued fraction.
+    /// </summary>
+    /// <param name="continuedFraction">An array containing a continued fraction representation of a number.</param>
+    /// <returns>An array containing the denominators of the convergents.</returns>
     public static BigInteger[] GetConvergentDenominators(int[] continuedFraction)
     {
         int size = continuedFraction.Length;
