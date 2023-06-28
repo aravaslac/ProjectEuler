@@ -34,10 +34,10 @@ public static class PrimeFactorization
         return factors;
     }
 
-    public static List<int> Factorize(int number, int[] listOfPrimes)
+    public static List<int> Factorize(int inputNumber, int[] listOfPrimes)
     {
         List<int> factors = new List<int>();
-
+        int number = inputNumber;
         int outOfBounds = listOfPrimes.Length;
         int i = 0;
         while (number > 1)
@@ -51,9 +51,47 @@ public static class PrimeFactorization
             {
                 i++;
             }
-            if (i == outOfBounds || listOfPrimes[i] * listOfPrimes[i] > number) //number is prime
+            if (i == outOfBounds || listOfPrimes[i] * listOfPrimes[i] > inputNumber) //number is prime
             {
                 factors.Add(number);
+                return factors;
+            }
+        }
+        return factors;
+    }
+
+    /// <summary>
+    /// Gets the prime factors of a number, returning a dictionary with the factors as the keys and their powers as values.
+    /// </summary>
+    public static Dictionary<int, int> FactorizeWithPowers(int inputNumber, int[] listOfPrimes)
+    {
+        Dictionary<int,int> factors = new Dictionary<int, int>();
+
+        int number = inputNumber;
+        int outOfBounds = listOfPrimes.Length;
+        int i = 0;
+        while (number > 1)
+        {
+            int prime = listOfPrimes[i];
+            if (number % prime == 0)
+            {
+                if (factors.ContainsKey(prime))
+                {
+                    factors[prime]++;
+                }
+                else
+                {
+                    factors[prime] = 1;
+                }
+                number /= prime;
+            }
+            else
+            {
+                i++;
+            }
+            if (i == outOfBounds || prime * prime > inputNumber) //number is prime
+            {
+                factors[number] = 1;
                 return factors;
             }
         }
