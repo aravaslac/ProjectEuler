@@ -49,7 +49,7 @@ public static class PrimeFactorization
             {
                 i++;
             }
-            if (i == outOfBounds || listOfPrimes[i] * listOfPrimes[i] > inputNumber) //number is prime
+            if (i == outOfBounds || listOfPrimes[i] * 2 > inputNumber) //number is prime
             {
                 factors.Add(number);
                 return factors;
@@ -60,6 +60,44 @@ public static class PrimeFactorization
 
     /// <summary>
     /// Gets the prime factors of a number, returning a dictionary with the factors as the keys and their powers as values.
+    /// </summary>
+    public static Dictionary<int, int> FactorizeWithPowers(int inputNumber)
+    {
+        Dictionary<int, int> factors = new Dictionary<int, int>();
+        int[] listOfPrimes = Sieve.GetQuickPrimes((int)Math.Sqrt(inputNumber));
+        int number = inputNumber;
+        int outOfBounds = listOfPrimes.Length;
+        int i = 0;
+        while (number > 1)
+        {
+            int prime = listOfPrimes[i];
+            if (number % prime == 0)
+            {
+                if (factors.ContainsKey(prime))
+                {
+                    factors[prime]++;
+                }
+                else
+                {
+                    factors[prime] = 1;
+                }
+                number /= prime;
+            }
+            else
+            {
+                i++;
+            }
+            if (i == outOfBounds || prime * 2 > inputNumber) //number is prime
+            {
+                factors[number] = 1;
+                return factors;
+            }
+        }
+        return factors;
+    }
+
+    /// <summary>
+    /// Gets the prime factors of a number, returning a dictionary with the factors as the keys and their powers as values. Takes a list of primes as input.
     /// </summary>
     public static Dictionary<int, int> FactorizeWithPowers(int inputNumber, int[] listOfPrimes)
     {
@@ -87,7 +125,7 @@ public static class PrimeFactorization
             {
                 i++;
             }
-            if (i == outOfBounds || prime * prime > inputNumber) //number is prime
+            if (i == outOfBounds || prime * 2 > inputNumber) //number is prime
             {
                 factors[number] = 1;
                 return factors;
@@ -113,7 +151,7 @@ public static class PrimeFactorization
             {
                 i++;
             }
-            if (i == outOfBounds || listOfPrimes[i] * listOfPrimes[i] > number) //number is prime
+            if (i == outOfBounds || listOfPrimes[i] * 2 > number) //number is prime
             {
                 factors.Add(number);
                 return factors;
@@ -122,10 +160,44 @@ public static class PrimeFactorization
         return factors;
     }
 
+    public static bool CheckPrimalityViaFactorization(int number)
+    {
+        int[] listOfPrimes = Sieve.GetQuickPrimes(number);
+        int index = 0;
+        int prime = listOfPrimes[index];
+        while (prime * prime < number)
+        {
+            if ((number % prime) == 0)
+            {
+                return false;
+            }
+            index++;
+            prime = listOfPrimes[index];
+        }
+        return true;
+    }
+
     public static bool CheckPrimalityViaFactorization(int number, int[] listOfPrimes)
     {
         int index = 0;
         int prime = listOfPrimes[index];
+        while (prime * prime < number)
+        {
+            if ((number % prime) == 0)
+            {
+                return false;
+            }
+            index++;
+            prime = listOfPrimes[index];
+        }
+        return true;
+    }
+
+    public static bool CheckPrimalityViaFactorization(long number)
+    {
+        int[] listOfPrimes = Sieve.GetQuickPrimes((int)Math.Sqrt(number));
+        int index = 0;
+        long prime = listOfPrimes[index];
         while (prime * prime < number)
         {
             if ((number % prime) == 0)
