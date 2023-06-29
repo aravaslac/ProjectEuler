@@ -164,7 +164,9 @@ public static class DigitOperations
         return true;
     }
 
-    //Given a list of digits and a period size n, checks if the list has a period size of n
+    /// <summary>
+    /// Given a list of digits and a period size n, checks if the list has a period size of n
+    /// </summary>
     public static bool CheckIsNPeriodic(List<int> digitsInput, int periodLength)
     {
         List<int> digits = digitsInput.ToList();
@@ -195,6 +197,22 @@ public static class DigitOperations
             }
         }
         return true;
+    }
+
+    /// <summary>
+    /// Returns a dictionary with factorial values for digits 0 through 9
+    /// </summary>
+    public static Dictionary<int,int> GetDigitFactorials()
+    {
+        Dictionary<int,int> digitFactorials = new Dictionary<int, int>
+        {
+            {0, 1 }, {1, 1 }
+        };
+        for (int i = 2; i <= 9; i++)
+        {
+            digitFactorials[i] = digitFactorials[i - 1] * i;
+        }
+        return digitFactorials;
     }
 }
 
