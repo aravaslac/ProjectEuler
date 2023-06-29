@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace _library;
 
@@ -24,6 +21,11 @@ public static class Divisors
         return divisors.ToArray();
     }
 
+    /// <summary>
+    /// Gets the greatest common divisor, including the step of calculatin primes
+    /// </summary>
+    /// <param name="numbers"></param>
+    /// <returns></returns>
     public static int GetGreatestCommonDivisor(List<int> numbers)
     {
         int[] primes = Sieve.GetPrimes(numbers.Max());
@@ -64,6 +66,54 @@ public static class Divisors
         }
         return gcd;
     }
+
+    /// <summary>
+    /// Gets the greatest common divisor, with the primes passed as a parameter
+    /// </summary>
+    /// <param name="numbers"></param>
+    /// <param name="primes"></param>
+    /// <returns></returns>
+    public static int GetGreatestCommonDivisor(List<int> inputNumbers, int[] primes)
+    {
+        List<int> numbers = inputNumbers.ToList();
+        List<int> factors = new List<int>();
+        int index = 0;
+        int gcd = 1;
+        while (numbers.Max() > 1)
+        {
+            List<int> newNumbers = new List<int>();
+            bool isFactor = true;
+            bool lastIteration = true;
+            foreach (int number in numbers)
+            {
+                if (number % primes[index] == 0)
+                {
+                    lastIteration = false;
+                    newNumbers.Add(number / primes[index]);
+                }
+                else
+                {
+                    isFactor = false;
+                    newNumbers.Add(number);
+                }
+            }
+            if (isFactor)
+            {
+                factors.Add(primes[index]);
+            }
+            if (lastIteration)
+            {
+                index++;
+            }
+            numbers = newNumbers.ToList();
+        }
+        foreach (int factor in factors)
+        {
+            gcd *= factor;
+        }
+        return gcd;
+    }
+
 
     public static int[] SimplifyFraction(int numerator, int denominator)
     {

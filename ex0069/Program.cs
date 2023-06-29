@@ -7,6 +7,9 @@
 
         int[] primes = _library.Sieve.GetPrimes(1_000_000);
         int[] composites = _library.Sieve.GetComposites(1_000_000);
+
+        Console.WriteLine(primes.Length);
+
         int n = 2;
         double maxValue = 2;
         foreach (int i in composites)

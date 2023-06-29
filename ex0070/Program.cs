@@ -10,6 +10,9 @@ internal class Program
 
         int[] primes = Sieve.GetPrimes(9_999_999);
         int[] composites = Sieve.GetComposites(9_999_999);
+
+        Console.Write(composites.Length);
+        
         int n = 0;
         double minValue = double.PositiveInfinity;
         foreach (int i in composites)
