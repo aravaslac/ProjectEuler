@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace _library;
 
-public class Fraction : IComparable<Fraction>
+public class Fraction : IComparable<Fraction>, IEquatable<Fraction>
 {
 
     private static int primeMagnitude = 1;
@@ -16,6 +16,21 @@ public class Fraction : IComparable<Fraction>
     {
         _numerator = numerator;
         _denominator = denominator;
+    }
+
+    public override int GetHashCode()
+    {
+        return 31 * _numerator + 17 * _denominator;
+    }
+
+    public override bool Equals(object obj)
+    {
+        return obj is Fraction fraction && Equals(fraction);
+    }
+
+    public bool Equals(Fraction other)
+    {
+        return _numerator == other._numerator && _denominator == other._denominator;
     }
 
     public override string ToString()
