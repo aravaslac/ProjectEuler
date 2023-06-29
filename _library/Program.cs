@@ -5,35 +5,23 @@ internal class Program
 {
     private static void Main(string[] args)
     {
-        int[] list1 = { 1, 2, 3, 4};
-
-        var list2 = ListOperations.LeftShift(list1.ToList(), 2);
-        var list3 = ListOperations.LeftShift(list1.ToList(), 1);
-        var list4 = ListOperations.LeftShift(list1.ToList(), 0);
-        var list5 = ListOperations.LeftShift(list1.ToList(), 7);
-
-        foreach ( var i in list2)
+        int[] primes = Sieve.GetPrimes(10_000_000);
+        int[] composites = Sieve.GetComposites(10_000_000);
+        int count = 0;
+        foreach (int i in primes)
         {
-            Console.Write($"{i} ");
-        }
-        Console.WriteLine();
+            HashSet<int> uniqueFactors = _library.PrimeFactorization.GetUniqueFactors(i, primes);
 
-        foreach (var i in list3)
-        {
-            Console.Write($"{i} ");
+            int radical = 1;
+            foreach (int factor in uniqueFactors)
+            {
+                radical *= factor;
+            }
+            if (radical == i)
+            {
+                count++;
+            }
         }
-        Console.WriteLine();
-
-        foreach (var i in list4)
-        {
-            Console.Write($"{i} ");
-        }
-        Console.WriteLine();
-
-        foreach (var i in list5)
-        {
-            Console.Write($"{i} ");
-        }
-        Console.WriteLine();
+        Console.WriteLine($"Composites: {composites.Length}. Radicals: {count}");
     }
 }
