@@ -134,8 +134,36 @@ public static class PrimeFactorization
         return factors;
     }
 
-    public static HashSet<int> GetUniqueFactors(int number, int[] listOfPrimes)
+    public static HashSet<int> GetUniqueFactors(int inputNumber)
     {
+        int[] listOfPrimes = Sieve.GetQuickPrimes(inputNumber);
+        if (listOfPrimes.Contains(inputNumber))
+        {
+            return (new HashSet<int> { inputNumber });
+        }
+        
+        int number = inputNumber;
+        HashSet<int> factors = new HashSet<int>();      
+        int i = 0;
+        while (number > 1)
+        {
+            if (number % listOfPrimes[i] == 0)
+            {
+                factors.Add(listOfPrimes[i]);
+                number /= listOfPrimes[i];
+            }
+            else
+            {
+                i++;
+            }
+        }
+        return factors;
+    }
+
+
+    public static HashSet<int> GetUniqueFactors(int inputNumber, int[] listOfPrimes)
+    {
+        int number = inputNumber;
         HashSet<int> factors = new HashSet<int>();
 
         int outOfBounds = listOfPrimes.Length;
@@ -151,7 +179,7 @@ public static class PrimeFactorization
             {
                 i++;
             }
-            if (i == outOfBounds || listOfPrimes[i] * 2 > number) //number is prime
+            if (i == outOfBounds || listOfPrimes[i] * 2 > inputNumber) //number is prime
             {
                 factors.Add(number);
                 return factors;

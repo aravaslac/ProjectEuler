@@ -26,9 +26,10 @@ public static class Divisors
     /// </summary>
     /// <param name="numbers"></param>
     /// <returns></returns>
-    public static int GetGreatestCommonDivisor(List<int> numbers)
+    public static int GetGreatestCommonDivisor(List<int> numbersInput)
     {
-        int[] primes = Sieve.GetPrimes(numbers.Max());
+        List<int> numbers = numbersInput.ToList();
+        int[] primes = Sieve.GetQuickPrimes(numbers.Max());
         List<int> factors = new List<int>();
         int index = 0;
         int gcd = 1;
