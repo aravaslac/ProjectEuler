@@ -120,6 +120,22 @@ public static class DigitOperations
         return digits.ToArray();
     }
 
+    /// <summary>
+    /// Given an int, returns an array of its digits in pairs.
+    /// </summary>
+    public static int[] GetDigitPairs (int number)
+    {
+        int remainder = number;
+        List<int> pairs = new List<int>();
+        while (remainder > 0)
+        {
+            pairs.Add(remainder % 100);
+            remainder /= 100;
+        }
+        pairs.Reverse();
+        return pairs.ToArray();
+    }
+
     public static int RemoveLeftDigit(int n)
     {
         return int.Parse($"{n}".Substring(1));
