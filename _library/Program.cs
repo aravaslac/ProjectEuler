@@ -6,7 +6,13 @@ internal class Program
 {
     private static void Main(string[] args)
     {
-        int[] primes = Sieve.GetPrimes(1_000_000);
-        Console.Write('a');
+        for (int i = 0; i < 1000; i++)
+        {
+            Console.Write("-");
+        }
+        for (int i = 0; i < 1000; i++)
+        {
+            Console.Write("\b \b");
+        }
     }
 }

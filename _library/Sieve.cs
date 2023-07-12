@@ -68,6 +68,10 @@ public static class Sieve
             {
                 primes.Add(prime);
             }
+            else
+            {
+                break;
+            }
 
         }
         return primes.ToArray();
