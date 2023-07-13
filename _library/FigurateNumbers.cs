@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace _library;
 
@@ -39,6 +40,33 @@ public static class FigurateNumbers
             number = i * i;
         }
         return squareNumbers.ToArray();
+    }
+
+    //Returns every square number between lowerLimit and upperLimit (inclusive) - long version
+    public static long[] GetSquareNumbersLong(long lowerLimit, long upperLimit)
+    {
+        List<long> squareNumbers = new List<long>();
+        int i = 1;
+        long number = 1;
+        while (number <= upperLimit)
+        {
+            if (number >= lowerLimit)
+            {
+                squareNumbers.Add(number);
+            }
+            i++;
+            number = i * i;
+        }
+        return squareNumbers.ToArray();
+    }
+
+    /// <summary>
+    /// Checks whether a given number is a perfect square
+    /// </summary>
+    public static bool CheckPerfectSquare(long number)
+    {
+        long root = (long)Math.Sqrt(number);
+        return (long)root * root == number;
     }
 
     //Returns every pentagonal number between lowerLimit and upperLimit (inclusive)
